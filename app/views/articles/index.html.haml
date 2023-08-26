@@ -1,0 +1,17 @@
+%h1 All Articles
+%table
+  %thead
+    %th Title
+    %th Description
+    %th{colspan: "2"} Actions
+  %tbody
+    - @articles.each do |article|
+      %tr
+        %td
+          %a{href: "#{article_path(article.id)}"}
+            Article title: #{article.title}
+        %td= article.description
+        %td= link_to 'Edit', edit_article_path(article)
+        %td= button_to 'Delete', article_path(article), :method => 'delete'
+%p
+  = link_to 'Create new article', new_article_path
