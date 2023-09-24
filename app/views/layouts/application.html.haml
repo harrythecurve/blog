@@ -6,10 +6,11 @@
     %meta{content: "width=device-width,initial-scale=1", name: "viewport"}/
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = stylesheet_link_tag "application", "https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto+Slab&display=swap", "data-turbo-track": "reload"
     = javascript_importmap_tags
-    = stylesheet_link_tag "application", "data-turbo-track": "reload"
   %body
-    = render 'layouts/navbar'
-    = render 'layouts/messages'
-    = yield
+    %header
+      = render 'layouts/navbar'
+    %main.container
+      = render 'layouts/messages'
+      = yield

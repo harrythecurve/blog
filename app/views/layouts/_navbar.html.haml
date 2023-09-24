@@ -1,28 +1,20 @@
-%nav.navbar.navbar-expand-lg.navbar-light.bg-light
-  .container-fluid
-    %a.navbar-brand{href: "#"} Navbar
-    %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarSupportedContent", "data-bs-toggle" => "collapse", type: "button"}
-      %span.navbar-toggler-icon
-    #navbarSupportedContent.collapse.navbar-collapse
-      %ul.navbar-nav.me-auto.mb-2.mb-lg-0
+.container
+  .py-3
+    .row.flex-nowrap.justify-content-center.align-items-center
+      .col-4.text-center
+        %h1
+          = link_to 'Alpha Blog', root_path, class: 'blog-title text-dark'
+  %nav.navbar.navbar-expand-sm.d-flex.justify-content-between.align-items-center.mb-5
+    .container-fluid
+      %ul.navbar-nav.mb-0.ps-0
         %li.nav-item
-          %a.nav-link.active{"aria-current" => "page", href: "#"} Home
+          = link_to 'About', about_path, class: "nav-link #{is_active('/about')}"
         %li.nav-item
-          %a.nav-link{href: "#"} Link
-        %li.nav-item.dropdown
-          %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", href: "#", role: "button"}
-            Dropdown
-          %ul.dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-            %li
-              %a.dropdown-item{href: "#"} Action
-            %li
-              %a.dropdown-item{href: "#"} Another action
-            %li
-              %hr.dropdown-divider/
-            %li
-              %a.dropdown-item{href: "#"} Something else here
-        %li.nav-item
-          %a.nav-link.disabled{"aria-disabled" => "true", href: "#", tabindex: "-1"} Disabled
-      %form.d-flex
-        %input.form-control.me-2{"aria-label" => "Search", placeholder: "Search", type: "search"}/
-        %button.btn.btn-outline-success{type: "submit"} Search
+          = link_to 'Articles', articles_path, class: "nav-link #{is_active('/articles')}"
+      .d-flex.justify-content-end.align-items-center
+        %a.link-secondary{"aria-label" => "Search", href: "#"}
+          %svg.mx-3{fill: "none", height: "20", role: "img", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2", viewbox: "0 0 24 24", width: "20", xmlns: "http://www.w3.org/2000/svg"}
+            %title Search
+            %circle{cx: "10.5", cy: "10.5", r: "7.5"}
+            %path{d: "M21 21l-5.2-5.2"}
+        %a.btn.btn-sm.btn-outline-secondary{href: "#"} Sign up
