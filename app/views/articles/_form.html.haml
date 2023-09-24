@@ -1,11 +1,12 @@
+= render 'errors'
 = form_with(model: @article, local: true) do |f|
   %p
-    = f.label :title
+    = f.label :title, class: 'form-label'
     %br/
-    = f.text_field :title
+    = f.text_field :title, class: 'form-control'
   %p
-    = f.label :description
+    = f.label :description, class: 'form-label'
     %br/
-    = f.text_area :description
+    = f.text_area :description, class: 'form-control'
   %p
-    = f.submit
+    = f.submit :submit, class: 'btn btn-primary'

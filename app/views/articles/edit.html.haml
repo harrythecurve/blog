@@ -1,6 +1,4 @@
 %h1
   Edit Article: #{@article.title}
-= render 'errors'
 = render 'form'
-%p= link_to 'Return to articles listing', articles_path
-%p= link_to 'Show article', article_path(@article)
+.btn.btn-primary= link_to 'Show article', article_path(@article), class: 'text-white text-decoration-none'
