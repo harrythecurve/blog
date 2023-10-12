@@ -3,14 +3,20 @@ $headings-font-weight: 400
 
 @import "bootstrap";
 @import "font-awesome";
+@import "pagination";
 
 $primary-color: #3498db
 $secondary-color: #DB7734
 $light-gray: #e5e5e5
+$light: #eee
 $dark: #111
 
 h1
   text-align: center
+
+body
+  min-height: 100vh
+  background-color: #f2f2f2
 
 .blog-title
   font-size: 40px
@@ -28,7 +34,26 @@ h1
     text-decoration: none
 
 .hover-primary
+  color: $light-gray
   transition: all 0.3s ease-in-out
 
 .hover-primary:hover
   color: $primary-color
+
+.auth-container
+  flex-grow: 0
+  height: 80vh
+
+.form-auth
+  width: 100%
+  max-width: 330px
+  padding: 15px
+
+.form-auth .checkbox
+  font-weight: 400
+
+
+.form-auth .form-floating:focus-within
+  z-index: 2
+
+

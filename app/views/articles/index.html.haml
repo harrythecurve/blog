@@ -1,12 +1,9 @@
 %h1 All Articles
 .d-flex
   - @articles.each do |article|
-    .card.shadow-sm.p-4.m-3.blog-container
-      -# %p.fs-3 Blog
-      = link_to article.title, article_path(article), class: 'hover-primary text-decoration-none text-center fs-3 '
-      .text-center.my-2= article.description
-      .d-flex.justify-content-center.align-items-center
-        = link_to 'Edit', edit_article_path(article), class: 'btn btn-primary text-white me-2'
-        = button_to 'Delete', article_path(article), :method => 'delete', class: 'btn btn-primary ms-2'
+    = render 'article_card', article: article
+
+= render 'shared/pagination', obj: @articles
+
 %p
   = link_to 'Create new article', new_article_path, class: 'btn btn-primary'

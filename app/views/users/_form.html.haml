@@ -1,0 +1,18 @@
+= render 'shared/errors', obj: @user
+.form-auth
+  = form_with(model: @user , local: true) do |f|
+    .field_with_errors
+      .form-floating.mb-2
+        = f.text_field :username, class: 'form-control', id: 'floatingUsername', placeholder: 'Username', required: true
+        = f.label :username, for: "floatingUsername"
+    .form-floating.mb-2
+      = f.email_field :email, class: 'form-control', id: 'floatingEmail', placeholder: 'name@example.com', required: true
+      = f.label :email, for: "floatingEmail"
+    .form-floating.mb-2
+      = f.password_field :password, class: 'form-control', id: 'floatingPassword', placeholder: 'password', required: true
+      = f.label :password, for: 'floatingPassword'
+    .form-floating
+      = f.password_field :password_confirmation, class: 'form-control', id: 'floatingPasswordConfirm', placeholder: 'confirm password', required: true
+      = f.label :password_confirmation, for: 'floatingPasswordConfirm'
+    %p.text-center.mt-3
+      = f.submit @user.new_record? ? 'Sign-up' : 'Update account', class: 'btn btn-primary'
