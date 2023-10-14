@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   def index
-    @articles = Article.all
+    @articles = Article.paginate(page: params[:page], per_page: 10)
   end
 
   def show; end
@@ -29,7 +29,7 @@ class ArticlesController < ApplicationController
       flash[:notice] = "Article successfully edited."
       redirect_to @article
     else
-      render 'edit'
+      render 'edit', status: :unprocessable_entity
     end
   end
 

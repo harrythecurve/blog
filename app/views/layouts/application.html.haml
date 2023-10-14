@@ -9,8 +9,7 @@
     = stylesheet_link_tag "application", "https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto+Slab&display=swap", "data-turbo-track": "reload"
     = javascript_importmap_tags
   %body
-    %header
-      = render 'layouts/navbar'
-    %main.container
+    = render 'layouts/navbar'
+    %main.container.mt-4
       = render 'layouts/messages'
       = yield

@@ -1,0 +1,8 @@
+%h1 #{@user.username}'s profile
+
+= gravatar_for @user, size: 200
+
+%h2 #{@user.username}'s articles
+.d-flex
+  - @user.articles.each do |article|
+    = render 'articles/article_card', article: article

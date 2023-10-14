@@ -1,20 +1,20 @@
-.container
-  .py-3
-    .row.flex-nowrap.justify-content-center.align-items-center
-      .col-4.text-center
-        %h1
-          = link_to 'Alpha Blog', root_path, class: 'blog-title text-dark'
-  %nav.navbar.navbar-expand-sm.d-flex.justify-content-between.align-items-center.mb-5
-    .container-fluid
-      %ul.navbar-nav.mb-0.ps-0
-        %li.nav-item
-          = link_to 'About', about_path, class: "nav-link #{is_active('/about')}"
-        %li.nav-item
-          = link_to 'Articles', articles_path, class: "nav-link #{is_active('/articles')}"
-      .d-flex.justify-content-end.align-items-center
-        %a.link-secondary{"aria-label" => "Search", href: "#"}
-          %svg.mx-3{fill: "none", height: "20", role: "img", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2", viewbox: "0 0 24 24", width: "20", xmlns: "http://www.w3.org/2000/svg"}
-            %title Search
-            %circle{cx: "10.5", cy: "10.5", r: "7.5"}
-            %path{d: "M21 21l-5.2-5.2"}
-        %a.btn.btn-sm.btn-outline-secondary{href: "#"} Sign up
+%header.p-3.text-bg-dark
+  .container
+    .d-flex.flex-wrap.align-items-center.justify-content-center.justify-content-lg-start
+      %h1
+        = link_to 'Alpha Blog', root_path, class: 'blog-title text-light pe-3'
+      %ul.nav.col-12.col-lg-auto.me-lg-auto.mb-2.justify-content-center.mb-md-0
+        %li
+          = link_to 'Home', root_path, class: "nav-link px-2 hover-primary #{is_active('/')}"
+        %li
+          = link_to 'About', about_path, class: "nav-link px-2 hover-primary #{is_active('/about')}"
+        %li
+          = link_to 'Articles', articles_path, class: "nav-link px-2 hover-primary #{is_active('/articles')}"
+        %li
+          = link_to 'Users', users_path, class: "nav-link px-2 hover-primary #{is_active('/users')}"
+      .text-end
+        - if session[:user_id].nil?
+          = link_to 'Login', login_path, class: 'btn btn-outline-light me-2'
+          = link_to 'Sign-up', signup_path, class: 'btn btn-warning'
+        - else
+          = link_to 'Logout', logout_path, class: 'btn btn-outline-light me-2', data: { "turbo-method": :delete }

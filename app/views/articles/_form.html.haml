@@ -1,4 +1,4 @@
-= render 'errors'
+= render 'shared/errors', obj: @article
 = form_with(model: @article, local: true) do |f|
   %p
     = f.label :title, class: 'form-label'

@@ -1,7 +1,0 @@
-- if @article.errors.any?
-  .alert.alert-danger.alert-dismissable.fade.show{ role: 'alert' }
-    %h4.alert-heading The following errors prevented the article from being edited
-    %ul
-      - @article.errors.full_messages.each do |msg|
-        %li= msg
-    %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "alert", type: "button"}

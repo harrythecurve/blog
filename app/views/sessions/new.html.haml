@@ -1,0 +1,14 @@
+.d-flex.auth-container.justify-content-center.align-items-center.flex-column
+  %h1 Login
+
+  .form-auth
+    = form_with(scope: :session, url: login_path, local: true) do |f|
+      .field_with_errors
+        .form-floating.mb-2
+          = f.text_field :username, class: 'form-control', id: 'floatingUsername', placeholder: 'Username', required: true
+          = f.label :username, for: "floatingUsername"
+      .form-floating.mb-2
+        = f.password_field :password, class: 'form-control', id: 'floatingPassword', placeholder: 'password', required: true
+        = f.label :password, for: 'floatingPassword'
+      %p.text-center.mt-3
+        = f.submit 'Login', class: 'btn btn-primary'

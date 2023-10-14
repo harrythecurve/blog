@@ -1,0 +1,15 @@
+%h1 Users
+
+.table-responsive
+  %table.table.table-hover.table-borderedless
+    %thead
+      %tr
+        %th{ scope: 'col' } User ID
+        %th{ scope: 'col' } Username
+        %th{ scope: 'col' } Email
+        %th{ scope: 'col' } Created
+    %tbody
+      - @users.each do |user|
+        = render 'user_row', user: user
+
+= render 'shared/pagination', obj: @users
