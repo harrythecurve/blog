@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
+  before_action :redirect_logged_in, only: %i[new create]
   before_action :find_user, except: %i[index new create]
+  before_action :require_user, only: %i[edit update]
+  before_action :authorise_user, only: %i[edit update]
 
   def index
     @users = User.paginate(page: params[:page], per_page: 20)
@@ -7,13 +10,13 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    render 'new'
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
       flash[:notice] = "You have succesfully registered #{@user.username}. Welcome!"
+      session[:user_id] = @user.id
       redirect_to articles_path
     else
       render 'new', status: :unprocessable_entity
@@ -33,6 +36,17 @@ class UsersController < ApplicationController
 
   def show; end
 
+  def destroy
+    if @user.destroy
+      session[:user_id] = nil
+      flash[:notice] = "Your account has been successfully deleted"
+      redirect_to root_path
+    else
+      flash[:error] = "There was an issue with deleting your account"
+      redirect_to user_patth(@user)
+    end
+  end
+
   private
 
   def user_params
@@ -43,4 +57,17 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def redirect_logged_in
+    if logged_in?
+      flash[:error] = "You are already logged in"
+      redirect_to root_path
+    end
+  end
+
+  def authorise_user
+    if current_user != @user
+      flash[:error] = "You can only edit or delete your own profile"
+      redirect_to @user
+    end
+  end
 end
