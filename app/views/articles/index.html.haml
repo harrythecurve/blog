@@ -1,9 +1,9 @@
-%h1 All Articles
-.d-flex
+%h2 All Articles
+.row.rows-cols-1.rows-cols-sm-2.row-cols-md-3.g-3
   - @articles.each do |article|
     = render 'article_card', article: article
 
 = render 'shared/pagination', obj: @articles
 
-%p
+%p.mt-3.text-center
   = link_to 'Create new article', new_article_path, class: 'btn btn-primary'

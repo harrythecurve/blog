@@ -1,8 +1,15 @@
-%h1 #{@user.username}'s profile
+.row
+  .col
+  .col
+    %h2 #{@user.username}'s profile
+  .col
+    - if logged_in? && @user == current_user
+      .btn.btn-danger= link_to 'Delete account', user_path(@user), class: 'text-white text-decoration-none', data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure you want to delete your account?' }
+      .btn.btn-primary= link_to 'Edit', edit_user_path(@user), class: 'text-white text-decoration-none'
 
 = gravatar_for @user, size: 200
 
-%h2 #{@user.username}'s articles
-.d-flex
+%h3 #{@user.username}'s articles
+.row.rows-cols-1.rows-cols-sm-2.row-cols-md-3.g-3
   - @user.articles.each do |article|
     = render 'articles/article_card', article: article

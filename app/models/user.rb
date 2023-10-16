@@ -21,7 +21,7 @@ class User < ApplicationRecord
   validates :password, confirmation: true, if: :password_changed?
   validates :password_confirmation, presence: true, if: :password_changed?
 
-  has_many :articles
+  has_many :articles, dependent: :destroy
 
   has_secure_password
 
