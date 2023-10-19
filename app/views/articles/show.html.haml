@@ -1,10 +1,13 @@
 %h2 Article show page
-%p
-  By #{@article.user.username}
-%p
-  Title: #{@article.title}
-%p
-  Description: #{@article.description}
-- if logged_in? && @article.user == current_user
-  .btn.btn-primary= link_to 'Edit', edit_article_path(@article), class: 'text-white text-decoration-none'
-  .btn.btn-primary= button_to 'Delete', article_path(@article), :method => 'delete', class: 'text-white text-decoration-none'
+%h3.h3.flex-1.text-center.display-5.mt-4
+  #{@article.title}
+
+%p.mt-4.container.display-6
+  #{@article.description}
+- if @article.user == current_user || current_user&.admin?
+  .text-center.mt-4
+    .btn.btn-primary= link_to 'Edit', edit_article_path(@article), class: 'text-white text-decoration-none'
+    .btn.btn-primary= link_to 'Delete', article_path(@article), class: 'text-white text-decoration-none', data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure you want to delete this article?' }
+
+%p.text-muted.flex-1.text-center.fs-5.mt-4
+  By #{ link_to @article.user.username, @article.user, style: 'text-decoration: none; color: var(--bs-secondary-color)'}

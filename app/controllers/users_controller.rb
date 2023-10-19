@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
   before_action :redirect_logged_in, only: %i[new create]
   before_action :find_user, except: %i[index new create]
-  before_action :require_user, only: %i[edit update]
+  before_action :require_user, only: %i[index edit update]
   before_action :authorise_user, only: %i[edit update]
 
   def index
+    require_admin
     @users = User.paginate(page: params[:page], per_page: 20)
   end
 
@@ -38,8 +39,8 @@ class UsersController < ApplicationController
 
   def destroy
     if @user.destroy
-      session[:user_id] = nil
-      flash[:notice] = "Your account has been successfully deleted"
+      session[:user_id] = nil if current_user == @user
+      flash[:notice] = "Account successfully deleted"
       redirect_to root_path
     else
       flash[:error] = "There was an issue with deleting your account"
@@ -65,7 +66,7 @@ class UsersController < ApplicationController
   end
 
   def authorise_user
-    if current_user != @user
+    unless current_user == @user || current_user&.admin?
       flash[:error] = "You can only edit or delete your own profile"
       redirect_to @user
     end
