@@ -54,7 +54,7 @@ class ArticlesController < ApplicationController
   end
 
   def authorise_user
-    if current_user != @article.user
+    unless current_user == @article.user || current_user&.admin?
       flash[:error] = "You can only edit or delete your own articles"
       redirect_to @article
     end
