@@ -3,9 +3,9 @@ class UsersController < ApplicationController
   before_action :find_user, except: %i[index new create]
   before_action :require_user, only: %i[index edit update]
   before_action :authorise_user, only: %i[edit update]
+  before_action :require_admin, only: %i[index destroy]
 
   def index
-    require_admin
     @users = User.paginate(page: params[:page], per_page: 20)
   end
 
@@ -43,8 +43,8 @@ class UsersController < ApplicationController
       flash[:notice] = "Account successfully deleted"
       redirect_to root_path
     else
-      flash[:error] = "There was an issue with deleting your account"
-      redirect_to user_patth(@user)
+      flash[:error] = "There was an issue with deleting the account"
+      redirect_to user_path(@user)
     end
   end
 
