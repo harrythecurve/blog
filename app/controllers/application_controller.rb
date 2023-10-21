@@ -18,10 +18,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def require_admin
-    unless current_user.admin?
+  def require_admin(path = root_path)
+    unless current_user&.admin?
       flash[:error] = "You are unauthorized to access this page"
-      redirect_to root_path
+      redirect_to path
     end
   end
 end

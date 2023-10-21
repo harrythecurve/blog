@@ -30,7 +30,7 @@ class ArticlesController < ApplicationController
       flash[:notice] = "Article successfully edited."
       redirect_to @article
     else
-      render 'edit', status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 

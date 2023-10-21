@@ -1,0 +1,10 @@
+%h2 All Categories
+.row.rows-cols-1.rows-cols-sm-2.row-cols-md-3.g-3
+  - @categories.each do |category|
+    = render 'category_card', category: category
+
+= render 'shared/pagination', obj: @categories
+
+- if logged_in?
+  %p.mt-3.text-center
+    = link_to 'Create new category', new_category_path, class: 'btn btn-primary'

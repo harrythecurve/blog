@@ -1,0 +1,13 @@
+= render 'shared/errors', obj: @category
+
+.d-flex.auth-container.justify-content-center.align-items-center.flex-column
+  %h2 New Category
+
+  .form-auth
+    = form_with(model: @category, local: true) do |f|
+      .field_with_errors
+        .form-floating.mb-2
+          = f.text_field :name, class: 'form-control', id: 'floatingName', placeholder: 'Name', required: true, minlength: 3, maxlength: 20
+          = f.label :name, "Category name", for: "floatingName"
+      %p.text-center.mt-4
+        = f.submit 'Create Category', class: 'btn btn-primary'
