@@ -4,3 +4,4 @@
       %div
         %a.text-decoration-none.text-dark{ href: category_path(category) }
           %h3.card-title= category.name
+          %p.mb-1= pluralize category.articles.count, "article"

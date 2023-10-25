@@ -2,6 +2,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy]
   before_action :require_user, except: %i[index show]
   before_action :authorise_user, only: %i[edit update destroy]
+  before_action :load_categories, only: %i[create edit]
 
   def index
     @articles = Article.paginate(page: params[:page], per_page: 9)
@@ -49,8 +50,12 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
   end
 
+  def load_categories
+    @categories = Category.all
+  end
+
   def article_params
-    params.require(:article).permit(:title, :description)
+    params.require(:article).permit(:title, :description, category_ids: [])
   end
 
   def authorise_user

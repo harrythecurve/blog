@@ -1,1 +1,7 @@
 %h2 Category: #{@category.name}
+
+.row.rows-cols-1.rows-cols-sm-2.row-cols-md-3.g-3
+  - @articles.each do |article|
+    = render 'articles/article_card', article: article
+
+= render 'shared/pagination', obj: @articles

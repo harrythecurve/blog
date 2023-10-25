@@ -1,5 +1,11 @@
 %h2 Article show page
-%h3.h3.flex-1.text-center.display-5.mt-4
+
+- if @article.categories.any?
+  .text-center.mt-4
+    - @article.categories.each do |category|
+      = link_to category.name, category, class: 'badge rounded-pill bg-primary text-decoration-none'
+
+%h3.h3.flex-1.text-center.display-5.mt-3
   #{@article.title}
 
 %p.mt-4.container.display-6
