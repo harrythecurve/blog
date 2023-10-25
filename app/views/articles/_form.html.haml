@@ -3,10 +3,13 @@
   %p
     = f.label :title, class: 'form-label'
     %br/
-    = f.text_field :title, class: 'form-control'
+    = f.text_field :title, class: 'form-control shadow'
   %p
     = f.label :description, class: 'form-label'
     %br/
-    = f.text_area :description, class: 'form-control'
+    = f.text_area :description, class: 'form-control shadow'
   %p
-    = f.submit :submit, class: 'btn btn-primary'
+    = f.label :category
+    = f.collection_select :category_ids, Category.all, :id, :name, { include_blank: 'Select something from below' }, { multiple: true, class: 'form-select shadow' }
+  %p
+    = f.submit :submit, class: 'btn btn-primary shadow text-capitalize'
